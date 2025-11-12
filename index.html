@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mcliao</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        user-select: none;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #ffffff;
+        color: #000000;
+        position: relative;
+      }
+
+      .switch {
+        position: relative;
+        width: 200px;
+        height: 100px;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      .switch input {
+        display: none;
+      }
+
+      .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ccc;
+        border-radius: 50px;
+        transition: background-color 0.3s;
+      }
+
+      .thumb {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 92px;
+        height: 92px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1);
+        touch-action: none;
+      }
+
+      /* 晚安文字 */
+      .goodnight {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+        font-size: 48px;
+        font-weight: bold;
+        color: #ffffff;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.8s ease, transform 1.2s ease;
+        z-index: 2;
+      }
+
+      /* 出现状态 */
+      .goodnight.show {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 上升淡出状态 */
+      .goodnight.fadeout {
+        opacity: 0;
+        transform: translate(-50%, -150px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="goodnight" id="goodnightText">晚安</div>
+
+    <label class="switch" id="switchLabel">
+      <input type="checkbox" id="toggle" />
+      <span class="slider">
+        <div class="thumb"></div>
+      </span>
+    </label>
+
+    <script>
+      const toggle = document.getElementById("toggle");
+      const switchLabel = document.getElementById("switchLabel");
+      const thumb = switchLabel.querySelector(".thumb");
+      const slider = switchLabel.querySelector(".slider");
+      const body = document.body;
+      const goodnight = document.getElementById("goodnightText");
+
+      const switchWidth = 200;
+      const thumbWidth = 92;
+      let dragging = false;
+      let startX = 0;
+      let initialChecked = toggle.checked;
+      let timeoutId = null;
+
+      // 恢复状态
+      const saved = localStorage.getItem("darkMode");
+      if (saved !== null) toggle.checked = saved === "true";
+
+      // 显示“晚安”文字动画
+      function showGoodnight() {
+        goodnight.classList.remove("fadeout");
+        goodnight.classList.add("show");
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          goodnight.classList.remove("show");
+          goodnight.classList.add("fadeout");
+        }, 1000);
+      }
+
+      // 更新视觉效果
+      function updateVisual(checked) {
+        body.style.backgroundColor = checked ? "#000000" : "#ffffff";
+        body.style.color = checked ? "#ffffff" : "#000000";
+        slider.style.backgroundColor = checked ? "#4cd964" : "#ccc";
+        thumb.style.transform = checked
+          ? `translateX(${switchWidth - thumbWidth - 8}px)`
+          : `translateX(0px)`;
+        if (checked) showGoodnight();
+        else goodnight.classList.remove("show", "fadeout");
+        localStorage.setItem("darkMode", checked);
+      }
+
+      // 初始化
+      updateVisual(toggle.checked);
+
+      // 点击切换
+      switchLabel.addEventListener("click", (e) => {
+        if (!dragging) {
+          toggle.checked = !toggle.checked;
+          updateVisual(toggle.checked);
+        }
+      });
+
+      // 开始拖动
+      function startDrag(clientX) {
+        dragging = true;
+        startX = clientX;
+        initialChecked = toggle.checked;
+        thumb.style.transition = "none";
+      }
+
+      // 拖动中
+      function moveDrag(clientX) {
+        if (!dragging) return;
+        let dx = clientX - startX;
+        let ratio = initialChecked
+          ? 1 + dx / (switchWidth - thumbWidth - 8)
+          : dx / (switchWidth - thumbWidth - 8);
+        ratio = Math.min(Math.max(ratio, 0), 1);
+        thumb.style.transform = `translateX(${
+          ratio * (switchWidth - thumbWidth - 8)
+        }px)`;
+        slider.style.backgroundColor = ratio > 0.5 ? "#4cd964" : "#ccc";
+        body.style.backgroundColor = `rgb(${255 - ratio * 255}, ${
+          255 - ratio * 255
+        }, ${255 - ratio * 255})`;
+        body.style.color = ratio > 0.5 ? "#ffffff" : "#000000";
+      }
+
+      // 结束拖动
+      function endDrag(clientX) {
+        if (!dragging) return;
+        dragging = false;
+        let dx = clientX - startX;
+        let ratio = initialChecked
+          ? 1 + dx / (switchWidth - thumbWidth - 8)
+          : dx / (switchWidth - thumbWidth - 8);
+        ratio = Math.min(Math.max(ratio, 0), 1);
+        toggle.checked = ratio > 0.5;
+        thumb.style.transition =
+          "transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1)";
+        updateVisual(toggle.checked);
+      }
+
+      // 鼠标事件
+      thumb.addEventListener("mousedown", (e) => {
+        startDrag(e.clientX);
+        e.preventDefault();
+      });
+      document.addEventListener("mousemove", (e) => moveDrag(e.clientX));
+      document.addEventListener("mouseup", (e) => endDrag(e.clientX));
+
+      // 触摸事件
+      thumb.addEventListener("touchstart", (e) => {
+        startDrag(e.touches[0].clientX);
+      });
+      document.addEventListener("touchmove", (e) =>
+        moveDrag(e.touches[0].clientX)
+      );
+      document.addEventListener("touchend", (e) => {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          endDrag(e.changedTouches[0].clientX);
+        }
+      });
+    </script>
+  </body>
+</html>
