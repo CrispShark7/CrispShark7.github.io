@@ -1,215 +1,186 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mcliao</title>
-    <style>
-      body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: sans-serif;
-        user-select: none;
-        transition: background-color 0.3s, color 0.3s;
-        background-color: #ffffff;
-        color: #000000;
-        position: relative;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>免责声明 & 特别感谢 - Centralmatrix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #ffeb3b;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      margin-top: 0;
+      color: #4a90e2;
+      text-align: center;
+    }
+    section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    section ul li {
+      margin-bottom: 0.8rem;
+    }
+    section ul li a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+    section ul li a:hover {
+      text-decoration: underline;
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+    footer {
+      text-align: center;
+      color: #888;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
 
-      .switch {
-        position: relative;
-        width: 200px;
-        height: 100px;
-        cursor: pointer;
-        z-index: 1;
-      }
+<header>
+  <h1>Centralmatrix Repository</h1>
+  <nav>
+    <a href="#disclaimer">免责声明</a>
+    <a href="#thanks">特别感谢</a>
+  </nav>
+</header>
 
-      .switch input {
-        display: none;
-      }
+<main>
 
-      .slider {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ccc;
-        border-radius: 50px;
-        transition: background-color 0.3s;
-      }
+  <section id="disclaimer">
+    <h2>免责声明</h2>
+    <ul>
+      <li>本项目中的资源文件，禁止用于商业或非法目的、禁止任何公众号或自媒体进行任何形式的转载和发布。否则后果自负。</li>
+      <li>本项目中所有的资源内容主要是用于学习以及研究。不能保证其合法性、准确性、完整性和有效性。</li>
+      <li>如果任何个人或组织认为该项目中的内容可能涉嫌侵犯其权利，则应该及时通知并提供身份证明以及所有权证明。我将在收到认证文件后删除相关内容。</li>
+      <li>本项目只收集和整理开源项目的规则和重写及脚本，修改后作为自用库使用，本项目所有贡献者不负责维护。</li>
+      <li>本项目所有规则和脚本数据都来自互联网，不保证所有资源可用性。不生产规则，只是开源规则搬运工。特别感谢开源规则项目作者的默默付出。</li>
+      <li>本项目不对资源内容负责，包括但不限于内容的真实性、准确性、合法性。使用本项目所造成的所有后果由使用者完全承担。</li>
+      <li>以任何方式查看本项目内容的人或组织，应仔细阅读本声明。本人保留随时对免责声明补充或更改的权利。</li>
+      <li>直接或间接使用并复制任何本项目相关内容的个人或组织，视为已接受免责声明。本人保留随时修改、更新或删除声明的权利。</li>
+    </ul>
+  </section>
 
-      .thumb {
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 92px;
-        height: 92px;
-        background-color: white;
-        border-radius: 50%;
-        transition: transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1);
-        touch-action: none;
-      }
+  <section id="thanks">
+    <h2>特别感谢</h2>
+    <ul>
+      <li><a href="https://github.com/ACL4SSR" target="_blank">ACL4SSR</a></li>
+      <li><a href="https://github.com/privacy-protection-tools" target="_blank">anti-AD</a></li>
+      <li><a href="https://github.com/app2smile" target="_blank">app2smile</a></li>
+      <li><a href="https://github.com/blackmatrix7" target="_blank">blackmatrix7</a></li>
+      <li><a href="https://github.com/Cats-Team" target="_blank">Cats-Team</a></li>
+      <li><a href="https://github.com/chavyleung" target="_blank">Chavyleung</a></li>
+      <li><a href="https://github.com/ConnersHua" target="_blank">ConnersHua</a></li>
+      <li><a href="https://github.com/chengkongyiban" target="_blank">chengkongyiban</a></li>
+      <li><a href="https://github.com/DivineEngine" target="_blank">DivineEngine</a></li>
+      <li><a href="https://github.com/ddgksf2013" target="_blank">ddgksf2013</a></li>
+      <li><a href="https://github.com/fmz200" target="_blank">fmz200</a></li>
+      <li><a href="https://github.com/githubdulong" target="_blank">githubdulong</a></li>
+      <li><a href="https://github.com/Hackl0us" target="_blank">Hackl0us</a></li>
+      <li><a href="https://github.com/I-am-R-E" target="_blank">I-am-R-E</a></li>
+      <li><a href="https://github.com/KOP-XIAO" target="_blank">KOP-XIAO</a></li>
+      <li><a href="https://t.me/ibilibili" target="_blank">Kelee</a></li>
+      <li><a href="https://github.com/kelv1n1n" target="_blank">kelv1n1n</a></li>
+      <li><a href="https://github.com/keywos" target="_blank">keywos</a></li>
+      <li><a href="https://github.com/kokoryh" target="_blank">kokoryh</a></li>
+      <li><a href="https://github.com/Koolson" target="_blank">Koolson</a></li>
+      <li><a href="https://github.com/LM-Firefly" target="_blank">LM-Firefly</a></li>
+      <li><a href="https://github.com/Loyalsoldier" target="_blank">Loyalsoldier</a></li>
+      <li><a href="https://github.com/Maasea" target="_blank">Maasea</a></li>
+      <li><a href="https://github.com/Masaiki" target="_blank">Masaiki</a></li>
+      <li><a href="https://github.com/mieqq" target="_blank">mieqq</a></li>
+      <li><a href="https://github.com/NobyDa" target="_blank">NobyDa</a></li>
+      <li><a href="https://github.com/Orz-3" target="_blank">Orz-3</a></li>
+      <li><a href="https://github.com/Peng-YM" target="_blank">Peng-YM</a></li>
+      <li><a href="https://github.com/QingRex" target="_blank">QingRex</a></li>
+      <li><a href="https://github.com/Repcz" target="_blank">Repcz</a></li>
+      <li><a href="https://github.com/RuCu6" target="_blank">RuCu6</a></li>
+      <li><a href="https://github.com/Script-Hub-Org" target="_blank">ScriptHub</a></li>
+      <li><a href="https://github.com/Semporia" target="_blank">Semporia</a></li>
+      <li><a href="https://github.com/sub-store-org" target="_blank">SubStore</a></li>
+      <li><a href="https://github.com/SukkaW" target="_blank">SukkaW</a></li>
+      <li><a href="https://github.com/xream" target="_blank">xream</a></li>
+      <li><a href="https://github.com/yichahucha" target="_blank">yichahucha</a></li>
+      <li><a href="https://github.com/zmqcherish" target="_blank">zmqcherish</a></li>
+    </ul>
+  </section>
 
-      /* 晚安文字 */
-      .goodnight {
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        text-align: center;
-        font-size: 48px;
-        font-weight: bold;
-        color: #ffffff;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.8s ease, transform 1.2s ease;
-        z-index: 2;
-      }
+</main>
 
-      /* 出现状态 */
-      .goodnight.show {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-      }
+<button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑ 返回顶部</button>
 
-      /* 上升淡出状态 */
-      .goodnight.fadeout {
-        opacity: 0;
-        transform: translate(-50%, -150px);
-      }
-    </style>
-  </head>
+<footer>
+  &copy; 2025 Centralmatrix. All rights reserved.
+</footer>
 
-  <body>
-    <div class="goodnight" id="goodnightText">晚安</div>
+<script>
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) backToTop.style.display = 'block';
+    else backToTop.style.display = 'none';
+  });
+</script>
 
-    <label class="switch" id="switchLabel">
-      <input type="checkbox" id="toggle" />
-      <span class="slider">
-        <div class="thumb"></div>
-      </span>
-    </label>
-
-    <script>
-      const toggle = document.getElementById("toggle");
-      const switchLabel = document.getElementById("switchLabel");
-      const thumb = switchLabel.querySelector(".thumb");
-      const slider = switchLabel.querySelector(".slider");
-      const body = document.body;
-      const goodnight = document.getElementById("goodnightText");
-
-      const switchWidth = 200;
-      const thumbWidth = 92;
-      let dragging = false;
-      let startX = 0;
-      let initialChecked = toggle.checked;
-      let timeoutId = null;
-
-      // 恢复状态
-      const saved = localStorage.getItem("darkMode");
-      if (saved !== null) toggle.checked = saved === "true";
-
-      // 显示“晚安”文字动画
-      function showGoodnight() {
-        goodnight.classList.remove("fadeout");
-        goodnight.classList.add("show");
-        if (timeoutId) clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          goodnight.classList.remove("show");
-          goodnight.classList.add("fadeout");
-        }, 1000);
-      }
-
-      // 更新视觉效果
-      function updateVisual(checked) {
-        body.style.backgroundColor = checked ? "#000000" : "#ffffff";
-        body.style.color = checked ? "#ffffff" : "#000000";
-        slider.style.backgroundColor = checked ? "#4cd964" : "#ccc";
-        thumb.style.transform = checked
-          ? `translateX(${switchWidth - thumbWidth - 8}px)`
-          : `translateX(0px)`;
-        if (checked) showGoodnight();
-        else goodnight.classList.remove("show", "fadeout");
-        localStorage.setItem("darkMode", checked);
-      }
-
-      // 初始化
-      updateVisual(toggle.checked);
-
-      // 点击切换
-      switchLabel.addEventListener("click", (e) => {
-        if (!dragging) {
-          toggle.checked = !toggle.checked;
-          updateVisual(toggle.checked);
-        }
-      });
-
-      // 开始拖动
-      function startDrag(clientX) {
-        dragging = true;
-        startX = clientX;
-        initialChecked = toggle.checked;
-        thumb.style.transition = "none";
-      }
-
-      // 拖动中
-      function moveDrag(clientX) {
-        if (!dragging) return;
-        let dx = clientX - startX;
-        let ratio = initialChecked
-          ? 1 + dx / (switchWidth - thumbWidth - 8)
-          : dx / (switchWidth - thumbWidth - 8);
-        ratio = Math.min(Math.max(ratio, 0), 1);
-        thumb.style.transform = `translateX(${
-          ratio * (switchWidth - thumbWidth - 8)
-        }px)`;
-        slider.style.backgroundColor = ratio > 0.5 ? "#4cd964" : "#ccc";
-        body.style.backgroundColor = `rgb(${255 - ratio * 255}, ${
-          255 - ratio * 255
-        }, ${255 - ratio * 255})`;
-        body.style.color = ratio > 0.5 ? "#ffffff" : "#000000";
-      }
-
-      // 结束拖动
-      function endDrag(clientX) {
-        if (!dragging) return;
-        dragging = false;
-        let dx = clientX - startX;
-        let ratio = initialChecked
-          ? 1 + dx / (switchWidth - thumbWidth - 8)
-          : dx / (switchWidth - thumbWidth - 8);
-        ratio = Math.min(Math.max(ratio, 0), 1);
-        toggle.checked = ratio > 0.5;
-        thumb.style.transition =
-          "transform 0.3s cubic-bezier(0.25, 1.5, 0.5, 1)";
-        updateVisual(toggle.checked);
-      }
-
-      // 鼠标事件
-      thumb.addEventListener("mousedown", (e) => {
-        startDrag(e.clientX);
-        e.preventDefault();
-      });
-      document.addEventListener("mousemove", (e) => moveDrag(e.clientX));
-      document.addEventListener("mouseup", (e) => endDrag(e.clientX));
-
-      // 触摸事件
-      thumb.addEventListener("touchstart", (e) => {
-        startDrag(e.touches[0].clientX);
-      });
-      document.addEventListener("touchmove", (e) =>
-        moveDrag(e.touches[0].clientX)
-      );
-      document.addEventListener("touchend", (e) => {
-        if (e.changedTouches && e.changedTouches.length > 0) {
-          endDrag(e.changedTouches[0].clientX);
-        }
-      });
-    </script>
-  </body>
+</body>
 </html>
